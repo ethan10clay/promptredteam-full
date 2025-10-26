@@ -7,7 +7,7 @@ import time
 # In-memory storage (resets on server restart)
 # For production, use Redis
 class RateLimiter:
-    def __init__(self, requests_per_minute: int = 20, max_text_length: int = 1000):
+    def __init__(self, requests_per_minute: int = 10, max_text_length: int = 1000):
         self.requests_per_minute = requests_per_minute
         self.max_text_length = max_text_length
         self.ip_requests: Dict[str, List[float]] = defaultdict(list)
@@ -51,7 +51,7 @@ class RateLimiter:
 
 
 # Global rate limiter instance
-rate_limiter = RateLimiter(requests_per_minute=20, max_text_length=1000)
+rate_limiter = RateLimiter(requests_per_minute=10, max_text_length=1000)
 
 
 def get_client_ip(request: Request) -> str:
