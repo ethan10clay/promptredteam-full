@@ -69,7 +69,6 @@ const languages = [
   { id: 'javascript', name: 'JavaScript'},
   { id: 'curl', name: 'cURL'},
   { id: 'go', name: 'Go'},
-  { id: 'ruby', name: 'Ruby'}
 ];
 
 const CodeExample = () => {
