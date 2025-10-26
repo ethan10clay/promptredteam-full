@@ -1,5 +1,4 @@
-# backend/app/middleware/rate_limit.py
-from fastapi import HTTPException, Request
+from fastapi import Request
 from fastapi.responses import JSONResponse
 from collections import defaultdict
 from typing import Dict, List
@@ -8,7 +7,7 @@ import time
 # In-memory storage (resets on server restart)
 # For production, use Redis
 class RateLimiter:
-    def __init__(self, requests_per_minute: int = 20, max_text_length: int = 10000):
+    def __init__(self, requests_per_minute: int = 20, max_text_length: int = 1000):
         self.requests_per_minute = requests_per_minute
         self.max_text_length = max_text_length
         self.ip_requests: Dict[str, List[float]] = defaultdict(list)
@@ -50,8 +49,29 @@ class RateLimiter:
         reset_time = 60 - (now - oldest_request)
         return max(0, int(reset_time))
 
+
 # Global rate limiter instance
-rate_limiter = RateLimiter(requests_per_minute=20, max_text_length=10000)
+rate_limiter = RateLimiter(requests_per_minute=20, max_text_length=1000)
+
+
+def get_client_ip(request: Request) -> str:
+    """Get real client IP, handling various proxy configurations"""
+    # Check common proxy headers in order of preference
+    headers_to_check = [
+        "CF-Connecting-IP",  # Cloudflare
+        "X-Real-IP",         # Nginx
+        "X-Forwarded-For",   # Standard
+    ]
+    
+    for header in headers_to_check:
+        value = request.headers.get(header)
+        if value:
+            # X-Forwarded-For can be a comma-separated list
+            return value.split(",")[0].strip()
+    
+    # Fallback to direct connection IP
+    return request.client.host
+
 
 async def rate_limit_middleware(request: Request, call_next):
     """
@@ -59,20 +79,22 @@ async def rate_limit_middleware(request: Request, call_next):
     Limits: 20 requests per minute per IP
     """
     # Skip rate limiting for docs and root endpoints
-    if request.url.path in ["/", "/docs", "/openapi.json", "/attacks"]:
+    if request.url.path in ["/", "/docs", "/openapi.json", "/redoc", "/health", "/attacks"]:
         return await call_next(request)
     
     # Get client IP
-    client_ip = request.client.host
+    client_ip = get_client_ip(request)
     
-    # For requests behind proxies (e.g., Railway, Vercel)
-    forwarded_for = request.headers.get("X-Forwarded-For")
-    if forwarded_for:
-        client_ip = forwarded_for.split(",")[0].strip()
+    # DEBUG: Log the IP and request count
+    print(f"🔍 Request from IP: {client_ip}")
+    print(f"🔍 Current request count: {len(rate_limiter.ip_requests[client_ip])}")
+    print(f"🔍 Path: {request.url.path}")
     
     # Check rate limit
     if rate_limiter.is_rate_limited(client_ip):
         reset_time = rate_limiter.get_reset_time(client_ip)
+        print(f"🚫 RATE LIMITED: {client_ip}")
+        
         return JSONResponse(
             status_code=429,
             content={
@@ -93,7 +115,6 @@ async def rate_limit_middleware(request: Request, call_next):
     # Add rate limit headers to successful responses
     response = await call_next(request)
     remaining = rate_limiter.get_remaining_requests(client_ip)
-    
     response.headers["X-RateLimit-Limit"] = str(rate_limiter.requests_per_minute)
     response.headers["X-RateLimit-Remaining"] = str(remaining)
     response.headers["X-RateLimit-Reset"] = str(int(time.time()) + 60)
