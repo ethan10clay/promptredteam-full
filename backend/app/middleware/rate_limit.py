@@ -79,7 +79,7 @@ async def rate_limit_middleware(request: Request, call_next):
     Limits: 20 requests per minute per IP
     """
     # Skip rate limiting for docs and root endpoints
-    if request.url.path in ["/", "/docs", "/openapi.json", "/redoc", "/health", "/attacks"]:
+    if request.url.path in ["/", "/docs", "/openapi.json", "/redoc", "/health", "/attacks", "/rate-limit-status"]:
         return await call_next(request)
     
     # Get client IP
