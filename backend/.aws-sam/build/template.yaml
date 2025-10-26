@@ -25,45 +25,10 @@ Resources:
           Properties:
             Path: /{proxy+}
             Method: ANY
-            Auth:
-              ApiKeyRequired: true
     Metadata:
       SamResourceId: SecurityTestAPI
-  ApiKey:
-    Type: AWS::ApiGateway::ApiKey
-    Properties:
-      Name: PromptRedTeamApiKey
-      Description: API Key for PromptRedTeam
-      Enabled: true
-  UsagePlan:
-    Type: AWS::ApiGateway::UsagePlan
-    Properties:
-      UsagePlanName: PromptRedTeamUsagePlan
-      Description: Usage plan for PromptRedTeam API
-      Throttle:
-        BurstLimit: 100
-        RateLimit: 50
-      Quota:
-        Limit: 10000
-        Period: MONTH
-      ApiStages:
-      - ApiId:
-          Ref: ServerlessRestApi
-        Stage: Prod
-  UsagePlanKey:
-    Type: AWS::ApiGateway::UsagePlanKey
-    Properties:
-      KeyId:
-        Ref: ApiKey
-      KeyType: API_KEY
-      UsagePlanId:
-        Ref: UsagePlan
 Outputs:
   ApiURL:
     Description: API Gateway endpoint URL
     Value:
       Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/
-  ApiKeyId:
-    Description: API Key ID
-    Value:
-      Ref: ApiKey
