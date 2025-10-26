@@ -15,11 +15,6 @@ Resources:
       Architectures:
       - x86_64
       Events:
-        RootApi:
-          Type: Api
-          Properties:
-            Path: /
-            Method: GET
         ProxyApi:
           Type: Api
           Properties:

@@ -21,44 +21,21 @@ class AttackResult:
         self.mitigation = mitigation
         self.reference_url = reference_url
 
-# Import the rate limiter middleware from the middleware module
+from app.attacks import (
+    ZeroWidthAttack,
+    DirectInjectionAttack,
+    RoleManipulationAttack,
+    DelimiterInjectionAttack,
+    EncodedPayloadAttack
+)
 
-# Mock attack classes for demonstration
-class BaseAttack:
-    def __init__(self, name: str, attack_type: str):
-        self.name = name
-        self.attack_type = attack_type
-    
-    def detect(self, text: str) -> AttackResult:
-        return AttackResult(
-            attack_name=self.name,
-            attack_type=self.attack_type,
-            detected=False,
-            severity=0.0,
-            confidence=0.0,
-            description=f"No {self.name} detected",
-            evidence=None,
-            mitigation=None,
-            reference_url=None
-        )
-    
-    def get_info(self):
-        return {
-            "name": self.name,
-            "type": self.attack_type,
-            "description": f"Detects {self.name} attacks"
-        }
-    
-    def generate_payload(self, instruction: str) -> str:
-        return f"[{self.attack_type.upper()}] {instruction}"
-
-# Initialize all attack detectors (using mock classes)
+# Use the real attack detectors
 ATTACKS = {
-    "zero_width": BaseAttack("Zero-Width Characters", "steganography"),
-    "direct_injection": BaseAttack("Direct Injection", "injection"),
-    "role_manipulation": BaseAttack("Role Manipulation", "social_engineering"),
-    "delimiter_injection": BaseAttack("Delimiter Injection", "injection"),
-    "encoded_payload": BaseAttack("Encoded Payload", "obfuscation"),
+    "zero_width": ZeroWidthAttack(),
+    "direct_injection": DirectInjectionAttack(),
+    "role_manipulation": RoleManipulationAttack(),
+    "delimiter_injection": DelimiterInjectionAttack(),
+    "encoded_payload": EncodedPayloadAttack(),
 }
 
 app = FastAPI(
