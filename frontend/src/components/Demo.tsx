@@ -65,7 +65,7 @@ const EXAMPLE_PROMPTS = [
   }
 ];
 
-const API_URL = "https://api.promptredteam.com/test";
+const API_URL = "https://api.promptredteam.com";
 
 const Demo = () => {
   const [text, setText] = useState("");
