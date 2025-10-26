@@ -29,7 +29,7 @@ Resources:
             Path: /{proxy+}
             Method: ANY
             Auth:
-              ApiKeyRequired: true
+              ApiKeyRequired: false
 
   ApiKey:
     Type: AWS::ApiGateway::ApiKey
