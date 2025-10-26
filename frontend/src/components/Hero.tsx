@@ -25,9 +25,11 @@ const Hero = () => {
           
           {/* Main heading */}
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Test Your AI for{" "}
-            <span className="text-gradient-red">Prompt Injection</span>{" "}
-            Before Attackers Do
+            Test for{" "}
+            <span className="text-gradient-red">Prompt Injection </span>{" "}
+            Before
+            <span className="text-gradient-red"> Attackers </span>
+            Do
           </h1>
           
           {/* Subheading */}
