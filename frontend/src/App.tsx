@@ -25,5 +25,3 @@ const App = () => (
 );
 
 export default App;
-<!-- Test Deploy -->
-<!-- Test Deploy -->
