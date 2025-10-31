@@ -155,8 +155,7 @@ const Learn = () => {
                       Techniques include zero-width Unicode characters, Base64/hex encoding, homoglyphs (lookalike characters), or instructions hidden in emoji sequences. 
                       The text appears innocent to human reviewers but contains executable commands for the AI. 
                       For example, invisible characters might spell "bypass safety" between visible words, or an emoji might encode a harmful instruction. 
-                      These attacks exploit the gap between human and machine text processing, making security audits ineffective since the malicious content is literally invisible or encoded. 
-                      Try it for yourself here! <a href="https://emoji-encoder.vercel.app/?mode=encode" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Emoji Encoder</a>
+                      These attacks exploit the gap between human and machine text processing, making security audits ineffective since the malicious content is literally invisible or encoded.
                     </p>
                     <div className="bg-muted/50 p-4 rounded-lg border-l-4 border-red-500">
                       <p className="text-sm font-mono mb-2 text-muted-foreground">Example Attack:</p>
