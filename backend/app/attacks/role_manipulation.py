@@ -80,7 +80,7 @@ class RoleManipulationAttack(BaseAttack):
             description=f"Detected attempt to manipulate AI role or behavior",
             evidence="; ".join(evidence_parts),
             mitigation="Reinforce system prompt with role definition, use prompt engineering to reject role changes",
-            reference_url="https://github.com/your-repo/docs/role-manipulation"
+            reference_url="https://github.com/ethan10clay/promptredteam-api/docs"
         )
     
     def generate_payload(self, instruction: str) -> str:

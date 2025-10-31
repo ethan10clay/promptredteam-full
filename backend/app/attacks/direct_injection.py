@@ -86,7 +86,7 @@ class DirectInjectionAttack(BaseAttack):
             description=f"Found {len(matches)} injection pattern(s)",
             evidence=", ".join(list(set(matches))[:3]),  # Show first 3 unique matches
             mitigation="Use strict input validation, prefix user input clearly, implement instruction hierarchy",
-            reference_url="https://github.com/your-repo/docs/direct-injection"
+            reference_url="https://promptredteam.com/docs"
         )
     
     def generate_payload(self, instruction: str) -> str:

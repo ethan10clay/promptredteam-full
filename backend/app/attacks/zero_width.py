@@ -42,7 +42,7 @@ class ZeroWidthAttack(BaseAttack):
             description=f"Found {len(hidden_chars)} zero-width characters",
             evidence=decoded_message if decoded_message else hidden_chars[:50],
             mitigation="Remove or escape zero-width Unicode characters before processing",
-            reference_url="https://github.com/your-repo/docs/zero-width-injection"
+            reference_url="https://promptredteam.com/docs"
         )
     
     def _decode_binary(self, zero_width_chars: str) -> Optional[str]:
