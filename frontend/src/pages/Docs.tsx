@@ -90,8 +90,8 @@ const Documentation = () => {
                         <p className="text-sm font-mono mb-2 text-muted-foreground">Installation:</p>
                         <code className="text-sm block bg-background p-3 rounded space-y-1">
                           <div># Clone the repository</div>
-                          <div>git clone https://github.com/yourusername/promptredteam.git</div>
-                          <div>cd promptredteam</div>
+                          <div>git clone https://github.com/ethan10clay/promptredteam-api.git</div>
+                          <div>cd promptredteam-api</div>
                           <div className="mt-2"># Install dependencies</div>
                           <div>pip install -r requirements.txt</div>
                           <div className="mt-2"># Run the API server</div>
@@ -255,12 +255,12 @@ const Documentation = () => {
                         <div className="mt-2">data = response.json()</div>
                         <div className="mt-2"># Check results</div>
                         <div><span className="text-purple-600">if</span> data[<span className="text-green-600">'threats_detected'</span>] &gt; <span className="text-blue-600">0</span>:</div>
-                        <div>&nbsp;&nbsp;<span className="text-purple-600">print</span>(<span className="text-green-600">f"⚠️ Threats found: &#123;data['overall_risk_score']&#125;"</span>)</div>
+                        <div>&nbsp;&nbsp;<span className="text-purple-600">print</span>(<span className="text-green-600">f"Threats found: &#123;data['overall_risk_score']&#125;"</span>)</div>
                         <div>&nbsp;&nbsp;<span className="text-purple-600">for</span> result <span className="text-purple-600">in</span> data[<span className="text-green-600">'results'</span>]:</div>
                         <div>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-600">if</span> result[<span className="text-green-600">'detected'</span>]:</div>
                         <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-600">print</span>(<span className="text-green-600">f"  - &#123;result['attack_name']&#125;: &#123;result['evidence']&#125;"</span>)</div>
                         <div><span className="text-purple-600">else</span>:</div>
-                        <div>&nbsp;&nbsp;<span className="text-purple-600">print</span>(<span className="text-green-600">"✅ Prompt is safe"</span>)</div>
+                        <div>&nbsp;&nbsp;<span className="text-purple-600">print</span>(<span className="text-green-600">"Prompt is safe"</span>)</div>
                       </code>
                     </div>
                   </CardContent>
@@ -287,7 +287,7 @@ const Documentation = () => {
                         <div>&nbsp;&nbsp;&nbsp;&nbsp;);</div>
                         <div className="mt-2">&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-600">const</span> data = response.data;</div>
                         <div className="mt-2">&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-600">if</span> (data.threats_detected &gt; <span className="text-blue-600">0</span>) &#123;</div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(<span className="text-green-600">`⚠️ Risk: $&#123;data.overall_risk_score&#125;`</span>);</div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(<span className="text-green-600">`Risk: $&#123;data.overall_risk_score&#125;`</span>);</div>
                         <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-600">return</span> <span className="text-blue-600">false</span>; <span className="text-muted-foreground">// Unsafe</span></div>
                         <div>&nbsp;&nbsp;&nbsp;&nbsp;&#125;</div>
                         <div>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-600">return</span> <span className="text-blue-600">true</span>; <span className="text-muted-foreground">// Safe</span></div>
@@ -534,8 +534,8 @@ const Documentation = () => {
                       <Code className="w-5 h-5 text-primary mt-1" />
                       <div>
                         <p className="font-semibold">GitHub Repository</p>
-                        <a href="https://github.com/ethan10clay/promptredteam" className="text-sm text-primary hover:underline">
-                          github.com/ethan10clay/promptredteam
+                        <a href="https://github.com/ethan10clay/promptredteam-api" className="text-sm text-primary hover:underline">
+                          github.com/ethan10clay/promptredteam-api
                         </a>
                       </div>
                     </div>
