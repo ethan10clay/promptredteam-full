@@ -159,7 +159,7 @@ const CodeExample = () => {
                 className="border-border hover:bg-secondary"
                 asChild
               >
-                <Link to="/Docs">View Full Documentation</Link>
+                <Link to="/Docs">View Documentation</Link>
               </Button>
             </div>
           </div>

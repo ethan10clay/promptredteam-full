@@ -53,7 +53,15 @@ const Hero = () => {
               className="text-lg px-8 py-6 border-border hover:bg-secondary"
               asChild
             >
-              <Link to="/Learn">Learn More</Link>
+              <Link to="/Learn">Learn More About Prompt Injection</Link>
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="text-lg px-8 py-6 border-border hover:bg-secondary"
+              asChild
+            >
+              <Link to="/Docs">Docs</Link>
             </Button>
           </div>
         </div>

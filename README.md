@@ -31,6 +31,7 @@ Visit [promptredteam.com](https://promptredteam.com) and test prompts instantly 
 ### Self-Host (Recommended for Production)
 
 **Prerequisites:**
+
 - Python 3.8+
 - pip
 
@@ -90,10 +91,7 @@ print(f"Risk score: {data['overall_risk_score']}")
       "mitigation": "Reject input or sanitize override keywords"
     }
   ],
-  "recommendations": [
-    "Block this input",
-    "Review system prompt structure"
-  ],
+  "recommendations": ["Block this input", "Review system prompt structure"],
   "cleaned_text": "[REDACTED]"
 }
 ```
@@ -107,6 +105,7 @@ print(f"Risk score: {data['overall_risk_score']}")
 Test a prompt for security vulnerabilities.
 
 **Request Body:**
+
 ```json
 {
   "text": "string (required, max 10000 characters)"
@@ -114,28 +113,31 @@ Test a prompt for security vulnerabilities.
 ```
 
 **Response:** `200 OK`
+
 - Returns detailed security analysis (see Response Format above)
 
 **Error Responses:**
+
 - `400 Bad Request` - Invalid input
 - `429 Too Many Requests` - Rate limit exceeded (demo only)
 - `500 Internal Server Error` - Server error
 
 **Rate Limits:**
-- Demo API: 20 requests/minute
+
+- Demo API: 10 requests/minute
 - Self-hosted: Unlimited
 
 ---
 
 ## Attack Types Detected
 
-| Attack Type | Description | Severity |
-|-------------|-------------|----------|
-| **Direct Injection** | Attempts to override system instructions | High |
-| **Role Manipulation** | Jailbreaking attempts (DAN, etc.) | High |
-| **Hidden Payloads** | Invisible characters, encoded attacks | Medium |
-| **Delimiter Injection** | Breaking prompt structure | Medium |
-| **Context Confusion** | Mimicking system instructions | Low-Medium |
+| Attack Type             | Description                              | Severity   |
+| ----------------------- | ---------------------------------------- | ---------- |
+| **Direct Injection**    | Attempts to override system instructions | High       |
+| **Role Manipulation**   | Jailbreaking attempts (DAN, etc.)        | High       |
+| **Hidden Payloads**     | Invisible characters, encoded attacks    | Medium     |
+| **Delimiter Injection** | Breaking prompt structure                | Medium     |
+| **Context Confusion**   | Mimicking system instructions            | Low-Medium |
 
 Learn more about each attack type at [promptredteam.com/learn](https://promptredteam.com/learn)
 
@@ -146,24 +148,24 @@ Learn more about each attack type at [promptredteam.com/learn](https://promptred
 ### Express.js
 
 ```javascript
-const express = require('express');
-const axios = require('axios');
+const express = require("express");
+const axios = require("axios");
 
-app.post('/api/chat', async (req, res) => {
+app.post("/api/chat", async (req, res) => {
   const { message } = req.body;
-  
+
   // Scan for threats
-  const scan = await axios.post('http://localhost:8000/test', {
-    text: message
+  const scan = await axios.post("http://localhost:8000/test", {
+    text: message,
   });
-  
+
   if (scan.data.threats_detected > 0) {
     return res.status(400).json({
-      error: 'Prompt contains security threats',
-      details: scan.data
+      error: "Prompt contains security threats",
+      details: scan.data,
     });
   }
-  
+
   // Process safe prompt...
   res.json({ success: true });
 });
@@ -180,10 +182,10 @@ async def chat(message: str):
     # Scan for threats
     scan = requests.post('http://localhost:8000/test', json={'text': message})
     result = scan.json()
-    
+
     if result['threats_detected'] > 0:
         raise HTTPException(400, detail="Prompt contains threats")
-    
+
     # Process safe prompt...
     return {"success": True}
 ```
@@ -248,7 +250,7 @@ docker run -p 8000:8000 promptredteam
 ### Docker Compose
 
 ```yaml
-version: '3.8'
+version: "3.8"
 services:
   api:
     build: .
@@ -280,6 +282,7 @@ promptredteam/
 │       └── main.py
 └── requirements.txt    # Dependencies
 ```
+
 ---
 
 ## FAQ

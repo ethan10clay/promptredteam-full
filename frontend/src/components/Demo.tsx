@@ -188,15 +188,15 @@ const Demo = () => {
             <Rocket className="h-4 w-4" />
             <AlertTitle>Free & Open Source</AlertTitle>
             <AlertDescription>
-              Demo limited to 20 requests/min.{" "}
+              Demo limited to 10 requests/min.{" "}
               <a 
-                href="https://github.com/your-repo#deployment" 
+                href="https://github.com/ethan10clay/promptredteam" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="underline hover:text-primary inline-flex items-center gap-1"
               >
                 <Github className="h-3 w-3" />
-                Deploy your own (free)
+                Deploy your own here
               </a>
             </AlertDescription>
           </Alert>
