@@ -7,7 +7,7 @@ Detect prompt injection attacks before they compromise your AI systems. PromptRe
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
-**[Live Demo](https://promptredteam.com)** | **[Documentation](https://promptredteam.com/documentation)** | **[Learn About Threats](https://promptredteam.com/learn)**
+**[Live Demo](https://promptredteam.com)** | **[Documentation](https://promptredteam.com/docs)** | **[Learn About Threats](https://promptredteam.com/learn)**
 
 ---
 
@@ -39,14 +39,15 @@ Visit [promptredteam.com](https://promptredteam.com) and test prompts instantly 
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/promptredteam.git
+git clone https://github.com/ethan10clay/promptredteam-api.git
 cd promptredteam
 
 # Install dependencies
 pip install -r requirements.txt
 
 # Run the API server
-python app.py
+cd backend
+uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
 The API will be available at `http://localhost:8000`
