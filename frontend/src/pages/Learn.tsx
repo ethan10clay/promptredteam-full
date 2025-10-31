@@ -1,9 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, Shield, AlertTriangle, Lock, Zap, Code, Eye, Globe } from "lucide-react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Learn = () => {
+  useEffect(() => {
+      window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}

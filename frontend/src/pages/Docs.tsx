@@ -5,12 +5,10 @@ import { ArrowLeft, Code, Terminal, Server, Zap, Lock, FileCode, Globe, CheckCir
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
-
-
 const Documentation = () => {
     useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+      window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -544,7 +542,7 @@ const Documentation = () => {
                       <div>
                         <p className="font-semibold">Learn More</p>
                         <Link to="/learn" className="text-sm text-primary hover:underline">
-                          Understanding Prompt Injection Attacks →
+                          Understanding Prompt Injection Attacks
                         </Link>
                       </div>
                     </div>
