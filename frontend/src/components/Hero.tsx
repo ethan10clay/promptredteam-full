@@ -1,4 +1,5 @@
 import { Shield } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
@@ -52,7 +53,7 @@ const Hero = () => {
               className="text-lg px-8 py-6 border-border hover:bg-secondary"
               asChild
             >
-              <a href="#documentation">View Documentation</a>
+              <Link to="/Learn">Learn More</Link>
             </Button>
           </div>
         </div>

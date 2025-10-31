@@ -9,7 +9,7 @@ const steps = [
   {
     icon: Search,
     title: "We Analyze",
-    description: "5+ detection algorithms scan for threats in milliseconds",
+    description: "5 detection algorithms scan for threats in milliseconds",
   },
   {
     icon: FileText,

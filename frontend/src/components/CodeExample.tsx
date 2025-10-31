@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Copy, Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 const codeExamples = {
   python: `import requests
@@ -153,11 +154,12 @@ const CodeExample = () => {
               Rate limit: 10 requests/minute • Deploy your own for unlimited access
             </p>
             <div className="flex gap-3 justify-center">
-              <Button variant="outline" className="border-border hover:bg-secondary">
-                View Full Documentation
-              </Button>
-              <Button variant="outline" className="border-border hover:bg-secondary">
-                Self-Host Guide
+              <Button 
+                variant="outline" 
+                className="border-border hover:bg-secondary"
+                asChild
+              >
+                <Link to="/Docs">View Full Documentation</Link>
               </Button>
             </div>
           </div>
