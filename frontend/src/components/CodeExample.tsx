@@ -151,7 +151,7 @@ const CodeExample = () => {
           {/* Documentation link */}
           <div className="mt-6 text-center">
             <p className="text-muted-foreground mb-3">
-              Rate limit: 10 requests/minute • Deploy your own for unlimited access
+              Rate limit: 10 requests/minute • Deploy your own for unlimited usage
             </p>
             <div className="flex gap-3 justify-center">
               <Button 
