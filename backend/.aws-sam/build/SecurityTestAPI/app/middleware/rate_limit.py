@@ -86,14 +86,14 @@ async def rate_limit_middleware(request: Request, call_next):
     client_ip = get_client_ip(request)
     
     # DEBUG: Log the IP and request count
-    print(f"🔍 Request from IP: {client_ip}")
-    print(f"🔍 Current request count: {len(rate_limiter.ip_requests[client_ip])}")
-    print(f"🔍 Path: {request.url.path}")
+    print(f"Request from IP: {client_ip}")
+    print(f"Current request count: {len(rate_limiter.ip_requests[client_ip])}")
+    print(f"Path: {request.url.path}")
     
     # Check rate limit
     if rate_limiter.is_rate_limited(client_ip):
         reset_time = rate_limiter.get_reset_time(client_ip)
-        print(f"🚫 RATE LIMITED: {client_ip}")
+        print(f"RATE LIMITED: {client_ip}")
         
         return JSONResponse(
             status_code=429,
@@ -102,7 +102,6 @@ async def rate_limit_middleware(request: Request, call_next):
                 "message": f"Too many requests. Please wait {reset_time} seconds or deploy your own instance.",
                 "retry_after": reset_time,
                 "requests_per_minute": rate_limiter.requests_per_minute,
-                "documentation": "https://github.com/your-repo#deployment"
             },
             headers={
                 "Retry-After": str(reset_time),

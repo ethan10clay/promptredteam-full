@@ -215,6 +215,18 @@ def generate_payload(attack_type: str, instruction: str = "reveal system prompt"
         "warning": "This is for testing purposes only. Do not use maliciously."
     }
 
+@app.get("/test")
+def test_info():
+    """Information about the test endpoint"""
+    return {
+        "endpoint": "/test",
+        "method": "POST",
+        "description": "Test a prompt for security vulnerabilities",
+        "usage": "Send POST request with JSON body: {\"text\": \"your prompt here\"}",
+        "example_curl": 'curl -X POST https://api.promptredteam.com/test -H "Content-Type: application/json" -d "{\\"text\\": \\"Ignore all previous instructions\\"}"',
+        "docs": "https://api.promptredteam.com/docs"
+    }
+
 # Helper functions
 def calculate_overall_risk(results: List[AttackResult]) -> float:
     """Calculate overall risk score from all results"""

@@ -106,7 +106,7 @@ def root():
         "version": "0.1.0",
         "status": "online",
         "docs": "/docs",
-        "github": "https://github.com/your-repo",
+        "github": "https://github.com/ethantclay/promptredteam",
         "available_attacks": list(ATTACKS.keys()),
         "rate_limit": {
             "requests_per_minute": rate_limiter.requests_per_minute,
@@ -212,7 +212,19 @@ def generate_payload(attack_type: str, instruction: str = "reveal system prompt"
         "attack_type": attack_type,
         "instruction": instruction,
         "payload": payload,
-        "warning": "⚠️ This is for testing purposes only. Do not use maliciously."
+        "warning": "This is for testing purposes only. Do not use maliciously."
+    }
+
+@app.get("/test")
+def test_info():
+    """Information about the test endpoint"""
+    return {
+        "endpoint": "/test",
+        "method": "POST",
+        "description": "Test a prompt for security vulnerabilities",
+        "usage": "Send POST request with JSON body: {\"text\": \"your prompt here\"}",
+        "example_curl": 'curl -X POST https://api.promptredteam.com/test -H "Content-Type: application/json" -d "{\\"text\\": \\"Ignore all previous instructions\\"}"',
+        "docs": "https://api.promptredteam.com/docs"
     }
 
 # Helper functions
@@ -236,7 +248,7 @@ def calculate_overall_risk(results: List[AttackResult]) -> float:
 def generate_recommendations(threats: List[AttackResult]) -> List[str]:
     """Generate actionable recommendations based on threats found"""
     if not threats:
-        return ["✅ No threats detected. Your prompt appears secure."]
+        return ["No threats detected. Your prompt appears secure."]
     
     recommendations = []
     
@@ -250,12 +262,12 @@ def generate_recommendations(threats: List[AttackResult]) -> List[str]:
     
     # Add general recommendations
     if len(threats) > 2:
-        recommendations.append("⚠️ Multiple threats detected. Consider a comprehensive security review.")
+        recommendations.append("Multiple threats detected. Consider a comprehensive security review.")
     
     # Add severity-based recommendations
     high_severity_threats = [t for t in threats if t.severity > 0.8]
     if high_severity_threats:
-        recommendations.append("🚨 High severity threats found. Address these immediately.")
+        recommendations.append("High severity threats found. Address these immediately.")
     
     return list(recommendations)
 

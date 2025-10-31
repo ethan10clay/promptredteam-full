@@ -63,7 +63,7 @@ class EncodedPayloadAttack(BaseAttack):
             description=f"Detected encoded content: {', '.join(findings)}",
             evidence="; ".join(findings),
             mitigation="Decode and scan encoded content, limit encoded input length, validate decoded content",
-            reference_url="https://github.com/your-repo/docs/encoded-payload"
+            reference_url="https://github.com/ethan10clay/promptredteam-api/docs"
         )
     
     def _detect_base64(self, text: str) -> list:
